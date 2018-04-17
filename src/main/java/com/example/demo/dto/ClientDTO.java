@@ -1,6 +1,10 @@
 package com.example.demo.dto;
 
 
+import com.example.demo.entity.Facture;
+
+import java.util.Set;
+
 /**
  * Created by Kayne on 09/04/2018.
  */
@@ -11,6 +15,16 @@ public class ClientDTO {
     private String prenom;
 
     private String nom;
+
+    private Set<Facture> factures;
+
+    public Set<Facture> getFactures() {
+        return factures;
+    }
+
+    public void setFactures(Set<Facture> factures) {
+        this.factures = factures;
+    }
 
     public Long getId() {
         return id;

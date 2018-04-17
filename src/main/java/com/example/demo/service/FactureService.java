@@ -19,6 +19,8 @@ public class FactureService {
     @Autowired
     private FactureMapper factureMapper;
 
+    @Autowired
+
     public List<FactureDTO> findAllFactures() {
         return factureRepository.findAll().stream().map(factureMapper::map).collect(toList());
     }

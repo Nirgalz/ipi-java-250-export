@@ -14,6 +14,7 @@ public class ClientMapper {
         dto.setId(entity.getId());
         dto.setNom(entity.getNom());
         dto.setPrenom(entity.getPrenom());
+        dto.setFactures(entity.getFactures());
         return dto;
     }
 }

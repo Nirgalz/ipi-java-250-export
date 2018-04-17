@@ -2,6 +2,9 @@ package com.example.demo.service.export;
 
 import com.example.demo.dto.ClientDTO;
 
+import com.example.demo.dto.FactureDTO;
+import com.example.demo.dto.LigneFactureDTO;
+import com.example.demo.entity.LigneFacture;
 import org.apache.poi.xssf.usermodel.*;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +31,43 @@ public class ExportXLSXService {
             cellPrenomWrite.setCellValue(client.getPrenom().replaceAll(";", ""));
             XSSFCell cellNomWrite = Row.createCell(1);
             cellNomWrite.setCellValue(client.getNom().replaceAll(";", ""));
+        }
+
+        workbook.write(os);
+        workbook.close();
+    }
+
+    public void exportFactures(OutputStream os, ClientDTO client, List<FactureDTO> factures) throws IOException {
+        XSSFWorkbook workbook = new XSSFWorkbook();
+
+
+        for (FactureDTO facture : factures) {
+            XSSFSheet sheet = workbook.createSheet("Facture" + facture.getId());
+            XSSFRow headerRow = sheet.createRow(0);
+            XSSFCell celldesignation = headerRow.createCell(0);
+            celldesignation.setCellValue("désignation");
+            XSSFCell cellQuantite = headerRow.createCell(1);
+            cellQuantite.setCellValue("quantité");
+            XSSFCell cellPrixUn = headerRow.createCell(2);
+            cellPrixUn.setCellValue("prixUnitaire");
+            XSSFCell cellPrixLine = headerRow.createCell(3);
+            cellPrixLine.setCellValue("prixLigne");
+
+            int i = 1;
+            for (LigneFactureDTO ligneFacture: facture.getLigneFactures()) {
+                XSSFRow rowl = sheet.createRow(i);
+                XSSFCell cellDes = rowl.createCell(0);
+                cellDes.setCellValue(ligneFacture.getDesignation());
+                XSSFCell cellQuanti = rowl.createCell(1);
+                cellQuanti.setCellValue(ligneFacture.getQuantite());
+                XSSFCell cellpu = rowl.createCell(2);
+                cellpu.setCellValue(ligneFacture.getPrixUnitaire());
+                XSSFCell cellpl = rowl.createCell(3);
+                cellpl.setCellValue(ligneFacture.getPrixUnitaire() * ligneFacture.getQuantite());
+                i++;
+            }
+
+
         }
 
         workbook.write(os);

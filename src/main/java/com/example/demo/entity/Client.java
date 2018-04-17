@@ -1,6 +1,9 @@
 package com.example.demo.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Kayne on 09/04/2018.
@@ -17,6 +20,17 @@ public class Client {
 
     @Column
     private String nom;
+
+    @OneToMany(mappedBy="client")
+    private Set<Facture> factures = new HashSet<>();
+
+    public Set<Facture> getFactures() {
+        return factures;
+    }
+
+    public void setFactures(Set<Facture> factures) {
+        this.factures = factures;
+    }
 
     public Long getId() {
         return id;
