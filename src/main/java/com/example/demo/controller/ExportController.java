@@ -52,7 +52,7 @@ public class ExportController {
     @GetMapping("/clients/xlsx")
     public void clientsXLSX(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("application/vnd.ms-excel");
-        response.setHeader("Content-Disposition", "attachment; filename=\"clients.xlsx\"");
+        response.setHeader("Content-Disposition", "attachment; filename=\"clients\"");
         List<ClientDTO> clients = clientService.findAllClients();
         exportXLSXService.export(response.getOutputStream(), clients);
     }
