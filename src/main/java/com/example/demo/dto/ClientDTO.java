@@ -1,8 +1,7 @@
 package com.example.demo.dto;
 
-
-import com.example.demo.entity.Facture;
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -16,13 +15,13 @@ public class ClientDTO {
 
     private String nom;
 
-    private Set<Facture> factures;
+    private List<FactureDTO> factures = new ArrayList<>();
 
-    public Set<Facture> getFactures() {
+    public List<FactureDTO> getFactures() {
         return factures;
     }
 
-    public void setFactures(Set<Facture> factures) {
+    public void setFactures(List<FactureDTO> factures) {
         this.factures = factures;
     }
 

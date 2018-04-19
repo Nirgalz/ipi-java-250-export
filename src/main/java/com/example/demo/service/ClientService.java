@@ -20,8 +20,6 @@ public class ClientService {
     @Autowired
     private ClientMapper clientMapper;
 
-    @Autowired
-    private FactureMapper factureMapper;
 
     public List<ClientDTO> findAllClients() {
         return clientRepository.findAll().stream().map(c-> clientMapper.map(c)).collect(toList());
@@ -38,6 +36,6 @@ public class ClientService {
     public List<FactureDTO> findFacturesByClientId(Long id){
         ClientDTO client = this.findById(id);
 
-        return client.getFactures().stream().map(c-> factureMapper.map(c)).collect(toList());
+        return client.getFactures();
     }
 }

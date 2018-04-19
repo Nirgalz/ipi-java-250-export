@@ -53,7 +53,7 @@ public class ExportXLSXService {
             XSSFCell cellPrixLine = headerRow.createCell(3);
             cellPrixLine.setCellValue("prixLigne");
 
-            int total = 0;
+            Double total = 0d;
 
             int i = 1;
             for (LigneFactureDTO ligneFacture: facture.getLigneFactures()) {
@@ -69,10 +69,11 @@ public class ExportXLSXService {
                 total += ligneFacture.getPrixUnitaire() * ligneFacture.getQuantite();
                 i++;
             }
+
             XSSFRow rowTotal = sheet.createRow(i);
             XSSFCell cellTotName = rowTotal.createCell(0);
             cellTotName.setCellValue("Total");
-            XSSFCell cellTotVal = rowTotal.createCell(0);
+            XSSFCell cellTotVal = rowTotal.createCell(1);
             cellTotVal.setCellValue(total);
 
 
